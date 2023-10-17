@@ -1,6 +1,6 @@
 import React from 'react';
 import {range} from '../../utils' ;
-import {NUM_OF_GUESSES_ALLOWED} from '../../constants' ;
+import {NUM_OF_GUESSES_ALLOWED, WORD_LENGTH_ALLOWED } from '../../constants' ;
 
 function GuessHolder({guesses}) {
   const emptyCellsLenght = NUM_OF_GUESSES_ALLOWED - guesses.length ;
@@ -10,11 +10,9 @@ function GuessHolder({guesses}) {
       {guesses.map(({guess, id}) => {
         return (
           <p key={id} className='guess'>
-            <span className="cell">{guess[0]}</span>
-            <span className="cell">{guess[1]}</span>
-            <span className="cell">{guess[2]}</span>
-            <span className="cell">{guess[3]}</span>
-            <span className="cell">{guess[4]}</span>
+            {range(WORD_LENGTH_ALLOWED).map((data, index) => <span key={data} className="cell">
+              {guess[index]}
+            </span>)}
           </p>
         );
         }
@@ -22,11 +20,7 @@ function GuessHolder({guesses}) {
       {emptyCells.map( (data) => {
         return (
           <p key={data} className='guess'>
-            <span className="cell"></span>
-            <span className="cell"></span>
-            <span className="cell"></span>
-            <span className="cell"></span>
-            <span className="cell"></span>
+          {range(WORD_LENGTH_ALLOWED).map((data) => <span key={data} className="cell"></span>)}
           </p>
         )
       })}
