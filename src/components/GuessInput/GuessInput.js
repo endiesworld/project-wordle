@@ -1,15 +1,14 @@
 import React from 'react';
-import {NUM_OF_GUESSES_ALLOWED} from '../../constants' ;
 
 function Guess({guesses, setGuesses}) {
   const [guess, setGuess] = React.useState('')
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (guesses.length < NUM_OF_GUESSES_ALLOWED) {
-      const newGuess = {guess, id: crypto.randomUUID()} ;
-      setGuesses( [...guesses, newGuess]) ;
-    }
+    
+    const newGuess = {guess, id: crypto.randomUUID()} ;
+    setGuesses( [...guesses, newGuess]) ;
+    
     setGuess('')
   }
 
