@@ -13,7 +13,7 @@ console.info({ answer });
 function Game() {
   const [guesses, setGuesses] = React.useState([])
   return <>
-            <GuessHolder guesses={guesses} />
+            <GuessHolder guesses={guesses} answer={answer} />
             <GuessInput guesses={guesses} setGuesses={setGuesses}/>
           </>;
 }
