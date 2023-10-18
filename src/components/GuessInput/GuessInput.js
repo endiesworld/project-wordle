@@ -1,21 +1,36 @@
 import React from 'react';
 
-function Guess({guesses, setGuesses}) {
-  const [guess, setGuess] = React.useState('')
+function Guess({handleSubmitGuess, gameState, answer}) {
+  const [guess, setGuess] = React.useState(''); 
 
   function handleSubmit(event) {
     event.preventDefault();
     
     const newGuess = {guess, id: crypto.randomUUID()} ;
-    setGuesses( [...guesses, newGuess]) ;
+    handleSubmitGuess(  newGuess) ;
     
     setGuess('')
+  }
+
+  function EndGame(){
+    return (gameState.gameState_  === "won")? 
+      ( <div className="happy banner">
+          <p>
+            <strong>Congratulations!</strong> Got it in
+            <strong>{' '}{gameState.guessCount} guesses</strong>.
+          </p>
+        </div>
+      ) :
+      ( <div className="sad banner">
+          <p>Sorry, the correct answer is <strong>{answer}</strong>.</p>
+        </div>
+      )
   }
 
   return <div>
     <form className="guess-input-wrapper" onSubmit={handleSubmit}>
       <label htmlFor="guess-input">Enter guess:</label>
-      <input 
+      {gameState.endGame ?<EndGame /> : <input 
         id="guess-input" 
         type="text" 
         value={guess} 
@@ -27,6 +42,7 @@ function Guess({guesses, setGuesses}) {
           setGuess(yourGuess);
         }}
         />
+      }
   </form>
   </div>;
 }
