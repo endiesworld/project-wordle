@@ -4,6 +4,7 @@ import { sample } from '../../utils';
 import { WORDS } from '../../data';
 import GuessInput from '../GuessInput';
 import GuessHolder from '../GuessHolder';
+import EndGame from '../EndGame';
 
 import {NUM_OF_GUESSES_ALLOWED} from '../../constants' ;
 
@@ -35,10 +36,12 @@ function Game() {
     setGameState( {guessCount, endGame, gameState_})
   }
 
-
   return <>
             <GuessHolder guesses={guesses} answer={answer} />
-            <GuessInput answer={answer} handleSubmitGuess={handleSubmitGuess} gameState={gameState}/>
+            {
+              gameState.endGame ?<EndGame answer={answer} gameState={gameState}/> : 
+              <GuessInput answer={answer} handleSubmitGuess={handleSubmitGuess} gameState={gameState}/>
+            }
           </>;
 }
 
