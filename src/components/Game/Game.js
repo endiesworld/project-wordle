@@ -38,10 +38,8 @@ function Game() {
 
   return <>
             <GuessHolder guesses={guesses} answer={answer} />
-            {
-              gameState.endGame ?<EndGame answer={answer} gameState={gameState}/> : 
-              <GuessInput answer={answer} handleSubmitGuess={handleSubmitGuess} gameState={gameState}/>
-            }
+            <GuessInput answer={answer} handleSubmitGuess={handleSubmitGuess} gameState={gameState}/>
+            {gameState.endGame &&<EndGame answer={answer} gameState={gameState}/>}
           </>;
 }
 
